@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% block head %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+    </script>
+    <script src="/static/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
+</head>
+{% endblock %}
+
+<body>
+    <div class="container">
+        <div class="row text-left">
+            {% block headTitle %}
+            <div class="col-md-9 ">
+                <h2>Система вопросов и ответов. </h2>
+            </div>
+            <div class="col-md-2 nav-item dropdown"">
+                    <a class=" nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                RU
+                </a>
+                <ul class="dropdown-menu dropdown-menu-ligth" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">RU</li>
+                    <li><a class="dropdown-item" href="#">EN</li>
+                </ul>
+            </div>
+
+            {% endblock %}
+        </div>
+        <!-- </div>
+    <div class="container"> -->
+        <div class="row ">
+
+            {% block globMenu %}
+            <nav class="navbar navbar-expand bg-light">
+                <div class="col-5">
+                    <ul class="navbar">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">О программе</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Контакты</a>
+                        </li>
+                        {% if code in ("user", "admin") %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Темы
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-ligth" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="dropdown-item" href="/StartPage/p">Python</a></li>
+                                <li><a class="dropdown-item" href="/StartPage/s">SQL</a></li>
+                                <li><a class="dropdown-item" href="/StartPage/j">JavaScript</a></li>
+                                <li><a class="dropdown-item" href="/StartPage/ht">HTML</a></li>
+                                <li><a class="dropdown-item" href="/StartPage/ho">Hadoop</a></li>
+                                <li><a class="dropdown-item" href="/StartPage/sp">Spark</a></li>
+                                <li><a class="dropdown-item" href="/StartPage/k">Kafka</a></li>
+                                <li><a class="dropdown-item" href="/StartPage/m">Masine learning</a></li>
+                                <li><a class="dropdown-item" href="/StartPage/d">Data scientist</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                        {% if code == "admin"%}
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Админка/a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-4 col-pull-1 ">
+                    <form class="d-flex text-right" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                        <button class="btn btn-outline-success" type="submit">Поиск</button>
+                    </form>
+                </div>
+                <div class="col-1"></div>
+            </nav>
+            <hr>
+            {% endblock %}
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" style="height: 800px;"">
+            <div class=" col col-2 border-end">
+            {% block leftMenu %}
+            {% if code == '0' %}
+            <h6>Авторизирируйтесь!</h6>
+            {% else %}
+            <h3>Hello left menu!!</h3>
+            {% endif %}
+
+            {% endblock %}
+        </div>
+        <div class="col text-center">
+            {% block workArea %}
+            {% if code in ("user", "admin") %}
+            <h3>Выберите тему.</h3>
+            {% else %}
+            {% include '/modules/autorization.html' %}
+            {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
